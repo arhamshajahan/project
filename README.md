@@ -1,7 +1,4 @@
-# Project-Object Detection
-## Name: Arham s
-## Reg No: 212222110005
-## Date:
+# EX 12: Project - Object Detection
 ## Aim
 To write a python program using OpenCV to do the following image manipulations.
 i) Extract ROI from  an image.
@@ -49,13 +46,17 @@ Flatten the index,confidence.
 Display the result.
 
 ## Program:
+```
+Developed By: Vaishnav Nanda
+Reg No: 212222240112
+```
 
-### I)Perform ROI from an image:
+### Perform ROI from an image:
 ```
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-image_path = 'nature.jpg'
+image_path = 'flower.jpeg'
 img = cv2.imread(image_path)
 img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 plt.imshow(img_rgb)
@@ -63,10 +64,9 @@ plt.title('Original Image')
 plt.axis('off')
 plt.show()
 hsv_img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-lower_yellow = np.array([22, 93, 0])#choose the RGB values accordingly to display specific color
+lower_yellow = np.array([22, 93, 0])
 upper_yellow = np.array([45, 255, 255])
 mask = cv2.inRange(hsv_img, lower_yellow, upper_yellow)
-bitwise_and 
 segmented_image = cv2.bitwise_and(img, img, mask=mask)
 segmented_image_rgb = cv2.cvtColor(segmented_image, cv2.COLOR_BGR2RGB)
 plt.imshow(segmented_image_rgb)
@@ -74,22 +74,18 @@ plt.title('Segmented Image (Yellow)')
 plt.axis('off')
 plt.show()
 ```
-
-
-### II)Perform handwritting detection in an image:
+### II) Perform handwritting detection in an image:
 ```
 get_ipython().system('pip install opencv-python numpy matplotlib')
 import cv2
 import numpy as np
 import matplotlib.pyplot as plt
-
 def detect_handwriting(image_path):
-    # Read the image
     img = cv2.imread(image_path)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     blurred = cv2.GaussianBlur(gray, (5, 5), 0)
     edges = cv2.Canny(blurred, 50, 150)
-    contours, _ = cv2.findContours(edges.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)regions
+    contours, _ = cv2.findContours(edges.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     min_area = 100
     text_contours = [cnt for cnt in contours if cv2.contourArea(cnt) > min_area]
     img_copy = img.copy()
@@ -101,24 +97,23 @@ def detect_handwriting(image_path):
     plt.title('Handwriting Detection')
     plt.axis('off')
     plt.show()
-image_path = 'images.jpeg'
+image_path = 'images.png'
 detect_handwriting(image_path)
 ```
-### III)Perform object detection with label in an image
+### III) Perform object detection with label in an image:
 ```
+import cv2
+import matplotlib.pyplot as plt
 config_file='ssd_mobilenet_v3_large_coco_2020_01_14.pbtxt'
 frozen_model='frozen_inference_graph.pb'
-
 model=cv2.dnn_DetectionModel(frozen_model,config_file)
-
 classLabels = []
 file_name='Labels.txt'
 with open(file_name,'rt')as fpt:
     classLabels=fpt.read().rstrip('\n').split('\n')
-
 print(classLabels)
 print(len(classLabels))
-img=cv2.imread('air.jpeg')
+img=cv2.imread('download.jpeg')
 plt.imshow(img)
 plt.imshow(cv2.cvtColor(img,cv2.COLOR_BGR2RGB))
 model.setInputSize(320,320)
@@ -134,30 +129,21 @@ for ClassInd,conf,boxes in zip(ClassIndex.flatten(),confidence.flatten(),bbox):
     cv2.putText(img,classLabels[ClassInd-1],(boxes[0]+10,boxes[1]+40),font,fontScale=font_scale,color=(255,0,0),thickness=1)
 plt.imshow(cv2.cvtColor(img,cv2.COLOR_BGR2RGB))
 ```
+## Output::
+### I) Perform ROI from an image:
 
+![Screenshot 2024-11-13 180743](https://github.com/user-attachments/assets/0625a3d9-5741-4cc8-8b73-937024a438cd)
 
-## Output:
-### I)Perform ROI from an image:
-![Screenshot 2024-11-10 125534](https://github.com/user-attachments/assets/edac967c-f2b9-45e6-a7be-91f2a4dd4360)
+![Screenshot 2024-11-13 180756](https://github.com/user-attachments/assets/51a6a9cb-3b75-4498-a710-6921ce7a4ce2)
 
+### II) Perform handwritting detection in an image:
 
-### II)Perform handwritting detection in an image:
+![Screenshot 2024-11-13 180807](https://github.com/user-attachments/assets/03f4942b-2bec-4343-81f3-6bbd9e328325)
 
-![Screenshot 2024-11-10 125545](https://github.com/user-attachments/assets/ea9019bc-d9b2-4f86-bd1c-ca2b1b2c9851)
+### III) Perform object detection with label in an image:
 
-
-### III)Perform object detection with label in an image:
-
-![Screenshot 2024-11-10 125555](https://github.com/user-attachments/assets/ed96f2c7-d3e2-4be8-bbe9-9cf70973906a)
+![image](https://github.com/user-attachments/assets/0599ec8d-6e35-4408-88e0-c4c619310a1a)
 
 
 ## Result:
-Thus, The python program using OpenCV to do the image manipulations is executed successfully.
-
-
-
-
-
-
-
-
+Thus, a python program using OpenCV for following image manipulations is done successfully.
