@@ -47,8 +47,8 @@ Display the result.
 
 ## Program:
 ```
-Developed By: Vaishnav Nanda
-Reg No: 212222240112
+Developed By: Arham S
+Reg No: 212222110005
 ```
 
 ### Perform ROI from an image:
